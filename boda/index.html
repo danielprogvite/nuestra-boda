@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra Boda | Estefany & Juan Daniel</title>
+  
+  <!-- Tipografías elegantes desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-cream: #FDFBF7;
+      --bg-card: #FFFFFF;
+      --gold-primary: #C5A059;
+      --gold-light: #F4E8C1;
+      --gold-secondary: #DFBA73;
+      --gold-dark: #8F6B28;
+      --text-dark: #2B2A29;
+      --text-muted: #6B6864;
+      --border-gold: rgba(197, 160, 89, 0.38);
+      --shadow-soft: 0 14px 38px rgba(143, 107, 40, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .cinzel {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .serif-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    /* Container global */
+    .page-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+      min-height: 100vh;
+      position: relative;
+      border-left: 1px solid var(--border-gold);
+      border-right: 1px solid var(--border-gold);
+    }
+
+    /* Adornos de esquinas doradas */
+    .corner-decor {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      pointer-events: none;
+      border: 2px solid var(--gold-primary);
+      opacity: 0.7;
+      z-index: 5;
+    }
+    .top-left { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+    .top-right { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+    .bottom-left { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+    .bottom-right { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+    /* Separador dorado */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 22px auto;
+      width: 75%;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+    }
+    .gold-divider i {
+      color: var(--gold-primary);
+      font-size: 0.95rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 65px 22px 30px;
+      background: radial-gradient(circle at center, #FFFFFF 0%, #FAF7EF 100%);
+      position: relative;
+    }
+
+    .hero-pretitle {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .couple-names {
+      font-size: 1.85rem;
+      line-height: 1.35;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 12px 0;
+    }
+
+    .couple-names span {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      text-transform: lowercase;
+      font-size: 1.9rem;
+      color: var(--gold-primary);
+      margin: -2px 0;
+      font-weight: 400;
+    }
+
+    .wedding-date-tag {
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-top: 14px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Contenedor Fotográfico con Marco Dorado */
+    .photo-wrapper {
+      position: relative;
+      margin: 28px auto 20px;
+      width: 82%;
+      max-width: 320px;
+    }
+
+    .photo-frame-outer {
+      position: absolute;
+      inset: -8px -8px;
+      border: 1px solid var(--gold-primary);
+      pointer-events: none;
+      border-radius: 12px;
+      transform: rotate(-1.5deg);
+      opacity: 0.75;
+    }
+
+    .photo-frame-inner {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--gold-secondary);
+      box-shadow: 0 14px 30px rgba(143, 107, 40, 0.18);
+      background: #FFFFFF;
+      aspect-ratio: 2 / 3;
+    }
+
+    .photo-frame-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo-frame-inner:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Countdown */
+    .countdown-section {
+      padding: 26px 20px;
+      background: #FAF8F2;
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      text-align: center;
+    }
+
+    .countdown-title {
+      font-size: 0.78rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .time-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 12px 4px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .time-num {
+      font-size: 1.65rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-dark);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .time-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Secciones comunes */
+    .section {
+      padding: 38px 24px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .quote-box {
+      font-size: 1.15rem;
+      color: var(--gold-dark);
+      padding: 0 10px;
+      line-height: 1.65;
+    }
+
+    /* Tarjetas de Lugares */
+    .location-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 26px 20px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .loc-icon {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+
+    .loc-tag {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .loc-title {
+      font-size: 1.3rem;
+      margin: 8px 0;
+      color: var(--text-dark);
+    }
+
+    .loc-time {
+      font-size: 0.95rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .loc-address {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    /* Grupo de botones de mapas (Google Maps + Waze) */
+    .map-btn-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 0.75rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.35);
+      transition: all 0.3s ease;
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .btn-waze {
+      background: #33CCFF;
+      color: #0b374d;
+      box-shadow: 0 4px 15px rgba(51, 204, 255, 0.3);
+    }
+
+    .btn-gold:hover, .btn-waze:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(197, 160, 89, 0.5);
+    }
+
+    .btn-waze:hover {
+      box-shadow: 0 6px 18px rgba(51, 204, 255, 0.45);
+    }
+
+    /* Información Clave (Dress Code, etc.) */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .info-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 22px 12px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .info-card i {
+      font-size: 1.6rem;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Formulario RSVP */
+    .rsvp-container {
+      background: #FAF9F5;
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 26px 20px;
+      box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      background: #FFFFFF;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 8px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      margin-top: 10px;
+      width: 100%;
+      padding: 13px;
+      font-size: 0.82rem;
+    }
+
+    .btn-whatsapp:hover {
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    .rsvp-deadline {
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .feedback-box {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .feedback-error {
+      background: #FDF2F2;
+      border: 1px solid #F8B4B4;
+      color: #9B1C1C;
+    }
+
+    .feedback-success {
+      background: #F3FAF7;
+      border: 1px solid #84E1BC;
+      color: #0E9F6E;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #FAF8F2;
+      border-top: 1px solid var(--border-gold);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <!-- Adornos de las esquinas -->
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor top-right"></div>
+    <div class="corner-decor bottom-left"></div>
+    <div class="corner-decor bottom-right"></div>
+
+    <!-- Encabezado / Hero -->
+    <header class="hero">
+      <p class="hero-pretitle">Nuestra Boda</p>
+      <h1 class="couple-names">
+        Estefany Juárez Valencia
+        <span>&</span>
+        Juan Daniel Delgadillo Vite
+      </h1>
+      
+      <!-- Foto de los novios con marco dorado -->
+      <div class="photo-wrapper">
+        <div class="photo-frame-outer"></div>
+        <div class="photo-frame-inner">
+          <img 
+            id="couplePhoto"
+            src="foto-novios.jpg" 
+            alt="Estefany y Juan Daniel" 
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <p class="wedding-date-tag">Viernes · 13 de Noviembre 2026</p>
+      
+      <div class="gold-divider">
+        <i class="fa-solid fa-gem"></i>
+      </div>
+
+      <p class="serif-quote quote-box">
+        "El amor no se mira con los ojos, sino con el alma. Hoy comenzamos a escribir juntos el capítulo más hermoso de nuestras vidas."
+      </p>
+    </header>
+
+    <!-- Contador Regresivo -->
+    <section class="countdown-section">
+      <h2 class="countdown-title">Esperando este gran día</h2>
+      <div class="countdown-grid">
+        <div class="time-card">
+          <div class="time-num" id="dias">00</div>
+          <div class="time-label">Días</div>
+        </div>
+        <div class="time-card">
+          <div class="time-num" id="horas">00</div>
+          <div class="time-label">Horas</div>
+        </div>
+        <div class="time-card">
+          <div class="time-num" id="minutos">00</div>
+          <div class="time-label">Min</div>
+        </div>
+        <div class="time-card">
+          <div class="time-num" id="segundos">00</div>
+          <div class="time-label">Seg</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Itinerario & Ubicaciones -->
+    <section class="section">
+      <h2 class="section-title">Dónde & Cuándo</h2>
+      <div class="gold-divider">
+        <i class="fa-solid fa-ring"></i>
+      </div>
+
+      <!-- Parroquia San Esteban -->
+      <div class="location-card">
+        <i class="fa-solid fa-church loc-icon"></i>
+        <div class="loc-tag">Ceremonia Religiosa</div>
+        <h3 class="loc-title cinzel">Iglesia San Esteban</h3>
+        <p class="loc-time"><i class="fa-regular fa-clock"></i> 17:00 hrs</p>
+        <p class="loc-address">Calz. San Esteban 34, San Esteban, 53550 Naucalpan de Juárez, Méx.</p>
+        
+        <div class="map-btn-group">
+          <a href="https://maps.google.com/?cid=8299587349980127388" target="_blank" rel="noopener noreferrer" class="btn-gold">
+            <i class="fa-solid fa-location-dot"></i> Google Maps
+          </a>
+          <a href="https://waze.com/ul?q=Parroquia+de+San+Esteban+Protomartir+Naucalpan" target="_blank" rel="noopener noreferrer" class="btn-gold btn-waze">
+            <i class="fa-brands fa-waze"></i> Waze
+          </a>
+        </div>
+      </div>
+
+      <!-- Salón Sol y Luna -->
+      <div class="location-card">
+        <i class="fa-solid fa-champagne-glasses loc-icon"></i>
+        <div class="loc-tag">Recepción y Fiesta</div>
+        <h3 class="loc-title cinzel">Salón Sol y Luna</h3>
+        <p class="loc-time"><i class="fa-regular fa-clock"></i> 18:00 hrs</p>
+        <p class="loc-address">Av. Naucalpan 144, Lomas de la Cañada, 53570 Naucalpan de Juárez, Méx.</p>
+        
+        <div class="map-btn-group">
+          <a href="https://maps.google.com/?cid=2192562466285599940" target="_blank" rel="noopener noreferrer" class="btn-gold">
+            <i class="fa-solid fa-location-dot"></i> Google Maps
+          </a>
+          <a href="https://waze.com/ul?q=Jardin+de+Eventos+Sol+y+luna+Naucalpan" target="_blank" rel="noopener noreferrer" class="btn-gold btn-waze">
+            <i class="fa-brands fa-waze"></i> Waze
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalles del Evento -->
+    <section class="section" style="padding-top: 0;">
+      <h2 class="section-title">Detalles Importantes</h2>
+      <div class="gold-divider">
+        <i class="fa-solid fa-sparkles"></i>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fa-solid fa-vest-patches"></i>
+          <h4>Vestimenta</h4>
+          <p>Formal</p>
+        </div>
+        <div class="info-card">
+          <i class="fa-solid fa-people-roof"></i>
+          <h4>Ambiente</h4>
+          <p>Adultos y Niños</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Confirmación de Asistencia (RSVP) -->
+    <section class="section" id="rsvp" style="padding-top: 0;">
+      <h2 class="section-title">Confirmar Asistencia</h2>
+      <div class="gold-divider">
+        <i class="fa-regular fa-envelope"></i>
+      </div>
+
+      <div class="rsvp-container">
+        <p class="rsvp-deadline">
+          <i class="fa-regular fa-calendar-check"></i> Favor de confirmar antes del <strong>9 de noviembre de 2026</strong>
+        </p>
+
+        <div id="rsvpFeedback" class="feedback-box"></div>
+
+        <form id="rsvpForm">
+          <div class="form-group">
+            <label for="guestName">Nombre Completo *</label>
+            <input type="text" id="guestName" class="form-input" placeholder="Ej. Juan Pérez" required />
+          </div>
+
+          <div class="form-group">
+            <label for="attendingStatus">¿Nos acompañarás? *</label>
+            <select id="attendingStatus" class="form-select" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Si">¡Sí, asistiré con mucho gusto!</option>
+              <option value="No">Lamentablemente no podré asistir</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="ticketsGroup">
+            <label for="ticketsCount">Número de boletos a confirmar *</label>
+            <select id="ticketsCount" class="form-select">
+              <option value="1">1 boleto</option>
+              <option value="2" selected>2 boletos</option>
+              <option value="3">3 boletos</option>
+              <option value="4">4 boletos</option>
+              <option value="5">5 boletos</option>
+            </select>
+          </div>
+
+          <!-- Botón directo de confirmación vía WhatsApp -->
+          <button type="button" id="btnWhatsappRsvp" class="btn-gold btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p class="cinzel" style="font-size: 0.95rem; color: var(--gold-dark); margin-bottom: 6px;">
+        Estefany & Juan Daniel
+      </p>
+      <p>13 · 11 · 2026</p>
+      <p style="margin-top: 15px; font-size: 0.72rem; opacity: 0.75;">
+        Con amor, los esperamos para celebrar juntos este día tan especial.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // 1. CUENTA REGRESIVA
+    const weddingDate = new Date("November 13, 2026 17:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById("dias").innerText = "00";
+        document.getElementById("horas").innerText = "00";
+        document.getElementById("minutos").innerText = "00";
+        document.getElementById("segundos").innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").innerText = days < 10 ? "0" + days : days;
+      document.getElementById("horas").innerText = hours < 10 ? "0" + hours : hours;
+      document.getElementById("minutos").innerText = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById("segundos").innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 2. MOSTRAR/OCULTAR NÚMERO DE BOLETOS SI DECLINA
+    const attendingSelect = document.getElementById("attendingStatus");
+    const ticketsGroup = document.getElementById("ticketsGroup");
+
+    attendingSelect.addEventListener("change", function() {
+      if (this.value === "No") {
+        ticketsGroup.style.display = "none";
+      } else {
+        ticketsGroup.style.display = "block";
+      }
+    });
+
+    // 3. ENVÍO DE CONFIRMACIÓN POR WHATSAPP CON MENSAJE EN PANTALLA
+    // Reemplaza con el teléfono deseado con lada (ej. 521XXXXXXXXXX)
+    const TELEFONO_NOVIOS = "525512258650"; 
+
+    document.getElementById("btnWhatsappRsvp").addEventListener("click", function() {
+      const name = document.getElementById("guestName").value.trim();
+      const status = document.getElementById("attendingStatus").value;
+      const tickets = document.getElementById("ticketsCount").value;
+      const feedback = document.getElementById("rsvpFeedback");
+
+      feedback.className = "feedback-box";
+      feedback.style.display = "none";
+
+      if (!name) {
+        feedback.innerText = "Por favor ingresa tu nombre completo.";
+        feedback.classList.add("feedback-error");
+        feedback.style.display = "block";
+        return;
+      }
+      if (!status) {
+        feedback.innerText = "Por favor indica si asistirás al evento.";
+        feedback.classList.add("feedback-error");
+        feedback.style.display = "block";
+        return;
+      }
+
+      let text = `¡Hola! Confirmo mi asistencia para la boda de *Estefany & Juan Daniel* 💍✨%0A%0A`;
+      text += `👤 *Nombre:* ${encodeURIComponent(name)}%0A`;
+      
+      if (status === "Si") {
+        text += `✅ *Asistencia:* ¡Sí asistiré!%0A`;
+        text += `🎟️ *Boletos confirmados:* ${tickets}%0A`;
+      } else {
+        text += `❌ *Asistencia:* Lamentablemente no podré asistir.%0A`;
+      }
+
+      feedback.innerText = "¡Muchas gracias! Redirigiendo a WhatsApp para enviar tu confirmación...";
+      feedback.classList.add("feedback-success");
+      feedback.style.display = "block";
+
+      const whatsappUrl = `https://wa.me/${TELEFONO_NOVIOS}?text=${text}`;
+      window.open(whatsappUrl, "_blank");
+    });
+  </script>
+</body>
+</html>
